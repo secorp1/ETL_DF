@@ -13,20 +13,28 @@ CREATE TABLE campaign (
 	end_date DATE NOT NULL,
 	category_id	VARCHAR(10) NOT NULL,
 	subcategory_id VARCHAR(10) NOT NULL
+	PRIMARY KEY (cf_id)
 );
 CREATE TABLE category(
 	category_id VARCHAR(10) NOT NULL,
 	category_name VARCHAR(50) NOT NULL
+	FOREIGN KEY (category_id) REFERENCES campaign (category_id),
+	PRIMARY KEY (category_id, category_name)
 );
 CREATE TABLE subcategory (
 	subcategory_id VARCHAR(10) NOT NULL,
 	subcategory_name VARCHAR(50) NOT NULL
+	FOREIGN KEY (subcategory_id) REFERENCES campaign (subcategory_id),
+	PRIMARY KEY (subcategory_id, subcategory_name)
 );
 CREATE TABLE contacts (
 	contact_id INT NOT NULL,
 	first_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
 	email VARCHAR(100) NOT NULL
+	FOREIGN KEY (contact_id) REFERENCES campaign (contact_id)
+	PRIMARY KEY (contact_id)
+
 );
 SELECT * from campaign;
 SELECT * from category;
